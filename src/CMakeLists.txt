@@ -8,7 +8,7 @@
 
 # module_minimum module
 add_executable(module_minimum module_minimum.cpp)
-target_link_libraries(module_minimum ${CONAN_LIBS_GHOSTMODULE})
+target_link_libraries(module_minimum ${CONAN_LIBS})
 
 ##### Unit tests #####
 
