@@ -1,0 +1,24 @@
+version: 1.0.{build}
+
+image:
+  - Visual Studio 2017
+
+platform:
+  - x64
+
+install:
+  - echo "Downloading conan..."
+  - set PATH=%PATH%;%PYTHON%/Scripts/
+  - pip.exe install conan
+  - conan user # Create the conan data directory
+  - conan --version
+  - conan remote add ghostrobotics "https://api.bintray.com/conan/mathieunassar/ghostrobotics"
+
+build_script:
+  - mkdir build
+  - cd build
+  - cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTS=True -G "Visual Studio 15 Win64"
+  - cmake --build . --config Release
+
+test_script:
+  - ctest . -C Release
