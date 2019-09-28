@@ -1,5 +1,5 @@
 [requires]
-ghostmodule/1.2@mathieunassar/stable
+ghostmodule/1.3@mathieunassar/testing
 protobuf/3.6.1@bincrafters/stable
 protoc_installer/3.6.1@bincrafters/stable
 gtest/1.8.1@bincrafters/stable
