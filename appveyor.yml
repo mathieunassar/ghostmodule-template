@@ -14,7 +14,6 @@ install:
   - conan --version
   - conan remote add ghostrobotics "https://api.bintray.com/conan/mathieunassar/ghostrobotics"
   - conan remote add inexorgame "https://api.bintray.com/conan/inexorgame/inexor-conan"
-  - conan remote add bincrafters "https://api.bintray.com/conan/bincrafters/public-conan"
 
 build_script:
   - mkdir build
