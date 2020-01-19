@@ -22,7 +22,7 @@
 #include <ghost/module/ModuleBuilder.hpp>
 #include <thread>
 
-#include "generated/connection_grpc_robot.pb.h"
+#include "connection_grpc_robot.pb.h"
 
 /***************************
 	TRY IT: Run this program once with the program option "robot". Using the ghost::Console,
