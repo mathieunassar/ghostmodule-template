@@ -3,12 +3,19 @@ matrix:
     - os: linux
       language: python
       python: 3.7
-      dist: xenial
+      dist: bionic
       compiler: gcc
       cache:
         directories:
           - $HOME/.conan/data
+      addons:
+        apt:
+          packages:
+            - cmake
+            - clang-format
     - os: osx
+      osx_image: xcode11.3
+      python: 3.7
       compiler: clang
       cache:
         directories:
@@ -24,6 +31,7 @@ install:
 # Automatic detection of your arch, compiler, etc.
   - conan user
   - conan remote add ghostrobotics "https://api.bintray.com/conan/mathieunassar/ghostrobotics"
+  - conan remote add inexorgame "https://api.bintray.com/conan/inexorgame/inexor-conan"
 
 script:
   - mkdir build
