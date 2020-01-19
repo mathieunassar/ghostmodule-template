@@ -3,11 +3,16 @@ matrix:
     - os: linux
       language: python
       python: 3.7
-      dist: xenial
+      dist: bionic
       compiler: gcc
       cache:
         directories:
           - $HOME/.conan/data
+      addons:
+        apt:
+          packages:
+            - cmake
+            - clang-format
     - os: osx
       osx_image: xcode11.3
       python: 3.7
