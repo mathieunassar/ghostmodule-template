@@ -177,14 +177,19 @@ public:
 
 		// The intialization will fail if the subscriber cannot connect to a publisher,
 		// i.e. if this program was not run with the "robot" option (exactly) once!
-		return subscriber->start();
+		bool subscriberStartResult = subscriber->start();
+		if (!subscriberStartResult)
+		{
+			GHOST_ERROR(module.getLogger()) << "Couldn't find the robot! Start this program with the \"robot\" option.";
+		}
+		return subscriberStartResult;
 	}
 
 	bool run(const ghost::Module& module)
 	{
 		if (_robot) _robot->update();
-		// The robot will send new odometry data (roughly) with a 20 Hz frequency
-		std::this_thread::sleep_for(std::chrono::milliseconds(50));
+		// The robot will send new odometry data (roughly) with a 2gi Hz frequency
+		std::this_thread::sleep_for(std::chrono::milliseconds(500));
 		return true;
 	}
 
@@ -209,7 +214,8 @@ int main(int argc, char** argv)
 	// waiting for a little bit.
 	builder->setRunningBehavior(std::bind(&RobotModule::run, &myModule, std::placeholders::_1));
 	// We will use a ghost::Console in this example to control the inputs while the odometry is being printed
-	(void)builder->setConsole();
+	auto console = builder->setConsole();
+	builder->setLogger(ghost::GhostLogger::create(console));
 	// Parse the program options to determine what to do:
 	builder->setProgramOptions(argc, argv);
 
